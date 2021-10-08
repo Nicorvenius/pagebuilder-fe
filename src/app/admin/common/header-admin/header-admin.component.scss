@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav{
+  &-item{
+    display: inline-block;
+    margin: 0 10px;
+
+    &__link{
+      color: #ffffff;
+      text-decoration: unset;
+      font-weight: normal;
+      font-size: 15px;
+    }
+  }
+}
