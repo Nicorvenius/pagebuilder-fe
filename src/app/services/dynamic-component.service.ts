@@ -6,7 +6,6 @@ import {
   Injector,
   NgModuleFactory
 } from '@angular/core';
-import { BaseModule } from "@share/classes/base-module";
 
 @Injectable({
   providedIn: "root"
@@ -14,13 +13,14 @@ import { BaseModule } from "@share/classes/base-module";
 export class DynamicComponentService {
   constructor(private injector: Injector) {}
 
-  getComponentBySelector(componentSelector: string, moduleLoaderFunction: () => Promise<any>): Promise<ComponentRef<unknown>> {
-    return this.getModuleFactory(moduleLoaderFunction).then(moduleFactory => {
-      const module = moduleFactory.create(this.injector);
+  getModuleLoader(): () => Promise<any> {
+    return () =>
+      import("@share/components/components.module").then(m => m.ComponentsModule)
+  }
 
-      if (!(module.instance instanceof BaseModule)) {
-        throw new Error('Module should extend BaseModule to use "string" based component selector');
-      }
+  getComponentBySelector(componentSelector: string): Promise<ComponentRef<unknown>> {
+    return this.getModuleFactory(this.getModuleLoader()).then(moduleFactory => {
+      const module = moduleFactory.create(this.injector);
 
       const compFactory: ComponentFactory<any> = module.instance.getComponentFactory(componentSelector);
       return compFactory.create(module.injector, [], null, module);

@@ -1,10 +1,6 @@
-import {
-  Component,
-  ComponentRef,
-  OnInit,
-  ViewChild,
-  ViewContainerRef
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PageService } from "@app/services/page.service";
+import { Component as ComponentPrototypes } from "@share/dto/component.dto";
 
 export interface DynamicContentInputs { [k: string]: any; }
 
@@ -14,8 +10,6 @@ export interface DynamicContentInputs { [k: string]: any; }
   styleUrls: ['./load-page.component.scss']
 })
 export class LoadPageComponent implements OnInit {
-  @ViewChild("container", { read: ViewContainerRef, static: true })// @ts-ignore
-  private container: ViewContainerRef;
 
   public readonly response = [
     {
@@ -35,20 +29,14 @@ export class LoadPageComponent implements OnInit {
     }
   ]
 
-  constructor() {}
+  componentPrototypes: ComponentPrototypes[] = [];
 
-  ngOnInit(): void {}
+  constructor(private pageService: PageService) {}
 
-  getModuleLoader() {
-    return () =>
-      import("@share/components/components.module").then(m => m.ComponentsModule)
-  }
-
-  addComponentInputs(componentRef: ComponentRef<unknown>, inputs: DynamicContentInputs) {
-    if (componentRef && componentRef.instance && inputs) {
-      // @ts-ignore
-      Object.keys(inputs).forEach(p => (componentRef.instance[p] = inputs[p]));
-    }
+  ngOnInit(): void {
+    this.pageService
+      .getPageComponents('')
+      .subscribe((components) => this.componentPrototypes = components)
   }
 
 }

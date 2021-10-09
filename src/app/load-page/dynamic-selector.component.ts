@@ -16,8 +16,6 @@ export class DynamicSelectorComponent implements OnDestroy, OnChanges {
   container: ViewContainerRef;
 
   @Input() componentSelector: string = '';
-  // @ts-ignore
-  @Input() moduleLoaderFunction;
   @Input() inputs: DynamicComponentInputs = [];
 
   // @ts-ignore
@@ -41,7 +39,7 @@ export class DynamicSelectorComponent implements OnDestroy, OnChanges {
   private async renderComponentInstance() {
     this.destroyComponentInstance();
 
-    this.component = await this.componentService.getComponentBySelector(this.componentSelector, this.moduleLoaderFunction);
+    this.component = await this.componentService.getComponentBySelector(this.componentSelector);
     this.container.insert(this.component.hostView);
   }
 
