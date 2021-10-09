@@ -19,12 +19,19 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"],
+      "@config/*": ["src/config/*"],
+      "@share/*": ["src/app/shared/*"],
+    }
   },
   "angularCompilerOptions": {
+    "enableIvy": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
+//    "strictInputAccessModifiers": true,
+//    "strictTemplates": true
   }
 }

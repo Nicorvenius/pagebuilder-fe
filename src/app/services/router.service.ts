@@ -2,12 +2,10 @@ import {Injectable, Injector} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import { Rout } from "../shared/dto/rout.dto";
-import {elementAt} from "rxjs/operators";
-import {LoadPageComponent} from "../components/load-page/load-page.component";
-import {HeaderComponent} from "../components/common/header/header.component";
-import {AdminComponent} from "../admin/admin.component";
-import {environment} from "../../environments/environment";
+import { Rout } from "@share/dto/rout.dto";
+import {LoadPageComponent} from "@app/load-page/load-page.component";
+import {HeaderComponent} from "@share/components/header/header.component";
+import {environment} from "@env/environment";
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,9 @@
+<section *ngFor="let section of response">
+  <app-dynamic-selector
+    [inputs]=""
+    [componentSelector]="section.component"
+    [moduleLoaderFunction]="getModuleLoader()"
+  ></app-dynamic-selector>
+
+</section>
+
