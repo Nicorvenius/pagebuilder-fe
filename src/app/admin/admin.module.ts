@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { HeaderAdminModule } from "./common/header-admin/header-admin.module";
-import { PageModule } from "./page/page.module";
+import { EditModule } from "@app/admin/edit/edit.module";
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { PageModule } from "./page/page.module";
   ],
   imports: [
     CommonModule,
-    PageModule,
+    EditModule,
     HeaderAdminModule,
   ]
 })
