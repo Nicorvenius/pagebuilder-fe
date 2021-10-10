@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageComponent implements OnInit {
 
+  selectedPages: string = '';
+
+  items = [
+    {
+      label: 'Home',
+      value: 'home'
+    },
+    {
+      label: 'About',
+      value: 'about'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.selectedPages)
   }
 
+  log(event: any){
+    console.log(event)
+  }
 }

@@ -1,0 +1,17 @@
+.page{
+
+  &-options{
+    width: auto;
+    margin: 30px 20px;
+
+    &__item{
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+}
+
+//.page__select{
+//  padding: 30px 20px;
+//  display: flex;
+//}

@@ -1,1 +1,13 @@
-<p>page works!</p>
+<div class="page">
+  <div class="page-options">
+    <div class="page-options__item">
+      <h4>Select the page</h4>
+      <app-select
+        title="Page name"
+        [items]="items"
+        (selectionChange)="selectedPages = $event"
+      ></app-select>
+    </div>
+  </div>
+  <hr>
+</div>
